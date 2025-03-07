@@ -1,0 +1,25 @@
+name: paypal-mcp-connector
+version: 1.0.0
+description: PayPal Merchant Catalog Products Connector
+type: agent
+
+build:
+  language: python
+  python:
+    pip:
+      - requests>=2.25.0
+      - flask>=2.0.0
+
+run:
+  # Use the standalone server directly
+  entrypoint: python mcp_connector_pkg/standalone_server.py
+  environment:
+    PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID}
+    PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET}
+    HOST: 0.0.0.0
+    PORT: 8000
+
+capabilities:
+  - commerce
+  - inventory
+  - catalog-management
